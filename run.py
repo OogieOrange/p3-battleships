@@ -6,6 +6,9 @@ COMP_BOARD = [[" " for num in range(6)] for num in range(6)]
 
 column_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
 
+row_guess = 0
+column_guess = 0
+
 def player_name():
     """
     Get players name to display over playing board
@@ -16,6 +19,7 @@ def player_name():
         if valid_name(name):
             print(f"\nWelcome {name.capitalize()}!")
             break
+
 
 def valid_name(value):
     """
@@ -64,12 +68,17 @@ def player_guess():
     Get guess input from player
     """
     while True:
+        global row_guess, column_guess
         row = input("\nEnter a guess for row, between 1-6: ")
-        column = input("Enter a guess for column, between A-F: \n").upper()
+        column = input("Enter a guess for column, between A-F: ").upper()
 
         if valid_guess(row, column):
             break
-    return int(row) -1 , column_number[column]
+
+    row_guess = int(row) -1
+    column_guess = column_number[column]
+
+    return row_guess, column_guess
 
 
 def valid_guess(value1, value2):
@@ -106,6 +115,22 @@ def valid_guess(value1, value2):
     return True
 
 
+def player_hit(board, board2):
+    """
+    Check if player hit comp ship
+    """
+    while board[row_guess][column_guess] == "-":
+        print("You've already guessed those cordinates. Guess again")
+    if board[row_guess][column_guess] == "o":
+        board[row_guess][column_guess] = "x"
+        board2[row_guess][column_guess] = "x"
+        print("\n- Oh no! You hit my ship!")
+    else:
+        board[row_guess][column_guess] = "-"
+        board2[row_guess][column_guess] = "-"
+        print("\n- Haha! You missed my ships.")
+
+
 def comp_guess(board):
     """
     Genereate computer guess and check for hit,
@@ -119,8 +144,11 @@ def comp_guess(board):
             comp_column = randint(0, 5)
         if board[comp_row][comp_column] == "o":
             board[comp_row][comp_column] = "x"
+            print("- I hit your ship!")
         else:
             board[comp_row][comp_column] = "-"
+            print("- I missed...")
+
 
 def main():
     print("\nDo you want to play battleships with me?\n")
@@ -134,8 +162,10 @@ def main():
         print("\nThis is my board.")
         print("Think of it as your guessing board,")
         playing_board(GUESS_BOARD)
-        print("\nMake a guess!\nThe row is a number between 1-6,\nand the column is a letter between A-F.")
+        print("\nMake a guess!")
         player_guess()
+        print("\nRound summary:")
+        player_hit(COMP_BOARD, GUESS_BOARD)
         comp_guess(PLAYER_BOARD)
     
 
