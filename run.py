@@ -120,7 +120,8 @@ def player_hit(board, board2):
     Check if player hit comp ship
     """
     while board[row_guess][column_guess] == "-":
-        print("You've already guessed those cordinates. Guess again")
+        print("\nYou've already guessed those cordinates. Guess again.")
+        player_guess()
     if board[row_guess][column_guess] == "o":
         board[row_guess][column_guess] = "x"
         board2[row_guess][column_guess] = "x"
@@ -156,15 +157,18 @@ def main():
     player_name()
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
+    print("\n- Take a guess of what cordinates hides my ships, and I will guess yours!")
+    print("- If a ship is hit, it will show an 'x' to mark the spot.")
+    print("- If it's a miss, it will instead show a '-' to indicate this.")
+    print("- The 'o' on your board are your ships.")
+    print("- I can't see them, like you can't see mine.")
     while True:
         print("\nThis is your board,")
         playing_board(PLAYER_BOARD)
-        print("\nThis is my board.")
-        print("Think of it as your guessing board,")
+        print("\nMy board is behind this guessing board,")
         playing_board(GUESS_BOARD)
         print("\nMake a guess!")
         player_guess()
-        print("\nRound summary:")
         player_hit(COMP_BOARD, GUESS_BOARD)
         comp_guess(PLAYER_BOARD)
     
