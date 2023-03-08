@@ -4,6 +4,8 @@ PLAYER_BOARD = [[" " for num in range(6)] for num in range(6)]
 GUESS_BOARD = [[" " for num in range(6)] for num in range(6)]
 COMP_BOARD = [[" " for num in range(6)] for num in range(6)]
 
+column_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
+
 def player_name():
     """
     Get players name to display over playing board
@@ -63,10 +65,11 @@ def player_guess():
     """
     while True:
         row = input("\nEnter a guess for row, between 1-6: ")
-        column = input("Enter a guess for column, between A-F: ").upper()
+        column = input("Enter a guess for column, between A-F: \n").upper()
 
         if valid_guess(row, column):
             break
+    return int(row) -1 , column_number[column]
 
 
 def valid_guess(value1, value2):
@@ -103,19 +106,37 @@ def valid_guess(value1, value2):
     return True
 
 
+def comp_guess(board):
+    """
+    Genereate computer guess and check for hit,
+    otherwise show miss on player board
+    """
+    for guess in range(1):
+        comp_row = randint(0, 5)
+        comp_column = randint(0, 5)
+        while board[comp_row][comp_column] == "-":
+            comp_row = randint(0, 5)
+            comp_column = randint(0, 5)
+        if board[comp_row][comp_column] == "o":
+            board[comp_row][comp_column] = "x"
+        else:
+            board[comp_row][comp_column] = "-"
+
 def main():
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
     player_name()
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
-    print(f"\nThis is your board,")
+    print("\nThis is your board,")
     playing_board(PLAYER_BOARD)
     print("\nThis is my board.")
     print("Think of it as your guessing board,")
     playing_board(GUESS_BOARD)
     print("\nMake a guess!\nThe row is a number between 1-6,\nand the column is a letter between A-F.")
     player_guess()
+    comp_guess(PLAYER_BOARD)
+    playing_board(PLAYER_BOARD)
 
 main()
 
