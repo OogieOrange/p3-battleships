@@ -80,6 +80,14 @@ def valid_guess(value1, value2):
             raise ValueError(
                 "\nEach guess can only consist of one character."
             )
+        elif value1 == "":
+            raise ValueError(
+                "\nYou cannot make an empty guess."
+            )
+        elif value2 == "":
+            raise ValueError(
+                "\nYou cannot make an empty guess."
+            )
         elif value1 not in "123456":
             raise ValueError(
                 "\nRow guess can only be a number between 1-6."
@@ -101,11 +109,12 @@ def main():
     player_name()
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
-    print(f"\nThis is your board")
+    print(f"\nThis is your board,")
     playing_board(PLAYER_BOARD)
-    print("\nThis is the computers board")
-    print("Think of it as your guessing board")
+    print("\nThis is my board.")
+    print("Think of it as your guessing board,")
     playing_board(GUESS_BOARD)
+    print("\nMake a guess!\nThe row is a number between 1-6,\nand the column is a letter between A-F.")
     player_guess()
 
 main()
