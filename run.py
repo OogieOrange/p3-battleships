@@ -88,7 +88,7 @@ def valid_guess(value1, value2):
     and that value2 consists of a letter between A and F.
     """
     try:
-        if len(value1) | len(value2) !=1:
+        if len(value1) !=1 or len(value2) !=1:
             raise ValueError(
                 "\nEach guess can only consist of one character."
             )
@@ -228,16 +228,20 @@ def main():
         comp_guess(PLAYER_BOARD)
         comp_ship_hit = ships_hit(PLAYER_BOARD)
         print(f"My score is: {comp_ship_hit}")
-        if player_ship_hit == 5:
-            print("\nAnd we have a winner!")
-            print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+        if player_ship_hit == 5 and comp_ship_hit == 5:
+            print("\nIt's a Draw!")
+            reset_board(PLAYER_BOARD)
+            reset_board(GUESS_BOARD)
+            reset_board(COMP_BOARD)
+            break
+        elif player_ship_hit == 5:
+            print("\nYou won!")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
             break
         elif comp_ship_hit == 5:
-            print("\nAnd we have a winner!\n")
-            print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+            print("\nI won!\n")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
