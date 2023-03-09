@@ -152,6 +152,9 @@ def comp_guess(board):
 
 
 def ships_hit(board):
+    """
+    Check how many hits a board hasS
+    """
     hit_ships = 0
     for row in board:
         for column in row:
@@ -171,6 +174,7 @@ def main():
     print("- If it's a miss, it will instead show a '-' to indicate this.")
     print("- The 'o' on your board are your ships.")
     print("- I can't see them, like you can't see mine.")
+    print("- Frist to 5 wins!")
     while True:
         print("\nThis is your board,")
         playing_board(PLAYER_BOARD)
@@ -184,6 +188,14 @@ def main():
         comp_guess(PLAYER_BOARD)
         comp_ship_hit = ships_hit(PLAYER_BOARD)
         print(f"My score is: {comp_ship_hit}")
+        if player_ship_hit == 5:
+            print("\nAnd we have a winner!")
+            print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+            break
+        elif comp_ship_hit == 5:
+            print("\nAnd we have a winner!")
+            print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+            break
     
 
 main()
