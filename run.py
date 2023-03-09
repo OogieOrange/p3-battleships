@@ -140,7 +140,7 @@ def comp_guess(board):
     for guess in range(1):
         comp_row = randint(0, 5)
         comp_column = randint(0, 5)
-        while board[comp_row][comp_column] == "-":
+        while board[comp_row][comp_column] == "-" or board[comp_row][comp_column] == "x":
             comp_row = randint(0, 5)
             comp_column = randint(0, 5)
         if board[comp_row][comp_column] == "o":
@@ -174,7 +174,7 @@ def main():
     print("- If it's a miss, it will instead show a '-' to indicate this.")
     print("- The 'o' on your board are your ships.")
     print("- I can't see them, like you can't see mine.")
-    print("- Frist to 5 wins!")
+    print("- Frist to 5 sunken oponent ships wins!")
     while True:
         print("\nThis is your board,")
         playing_board(PLAYER_BOARD)
