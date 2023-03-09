@@ -178,6 +178,9 @@ def reset_board(board):
 
 
 def check_board(board):
+    """
+    Check board for symbols
+    """
     symbols = 0
     for row in board:
         for column in row:
@@ -190,7 +193,15 @@ def continue_game():
     """
     Check if player wants to end or play again
     """
-    answer = input("If yes then answer 'y', else 'n' for no. ").lower()
+    while True:
+        answer = input("Enter answer: ").lower()
+
+        if answer == "y":
+            break
+        elif answer == "n":
+            break
+        else:
+            print("\nThe answer must be either 'y' or 'n'.")
 
     if answer == "y":
         print("\nHere we go again!")
@@ -198,6 +209,22 @@ def continue_game():
     elif answer == "n":
         print("\nIt was nice playing with you.")
         print("Have a nice day! :)")
+
+
+def valid_answer(value):
+    """
+    Check that value is either a "y" or "n"
+    """
+    try:
+        if value != "y" or "n":
+            raise ValueError(
+                "\nThe answer must be either 'y' or 'n'."
+            )
+    except ValueError as e:
+        print(f" {e} Please enter a answer.\n")
+        return False
+    
+    return True
 
 
 def intro_txt():
@@ -221,6 +248,7 @@ def main():
         print("\nMy board is behind this guessing board,")
         playing_board(GUESS_BOARD)
         print("\nMake a guess!")
+        playing_board(COMP_BOARD)
         player_guess()
         player_hit(COMP_BOARD, GUESS_BOARD)
         player_ship_hit = ships_hit(COMP_BOARD)
@@ -247,6 +275,7 @@ def main():
             reset_board(COMP_BOARD)
             break
     print("\nWould you like to play again?")
+    print("If yes then answer 'y', else 'n' for no.\n")
     continue_game()
 
 
