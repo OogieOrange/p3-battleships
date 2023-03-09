@@ -211,22 +211,6 @@ def continue_game():
         print("Have a nice day! :)")
 
 
-def valid_answer(value):
-    """
-    Check that value is either a "y" or "n"
-    """
-    try:
-        if value != "y" or "n":
-            raise ValueError(
-                "\nThe answer must be either 'y' or 'n'."
-            )
-    except ValueError as e:
-        print(f" {e} Please enter a answer.\n")
-        return False
-    
-    return True
-
-
 def intro_txt():
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
