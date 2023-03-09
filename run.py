@@ -151,6 +151,15 @@ def comp_guess(board):
             print("- I missed...")
 
 
+def ships_hit(board):
+    hit_ships = 0
+    for row in board:
+        for column in row:
+            if column == "x":
+                hit_ships += 1
+    return hit_ships
+
+
 def main():
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
@@ -170,7 +179,11 @@ def main():
         print("\nMake a guess!")
         player_guess()
         player_hit(COMP_BOARD, GUESS_BOARD)
+        player_ship_hit = ships_hit(COMP_BOARD)
+        print(f"Your score is: {player_ship_hit}\n")
         comp_guess(PLAYER_BOARD)
+        comp_ship_hit = ships_hit(PLAYER_BOARD)
+        print(f"My score is: {comp_ship_hit}")
     
 
 main()
