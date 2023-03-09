@@ -163,18 +163,62 @@ def ships_hit(board):
     return hit_ships
 
 
-def main():
+def reset_board(board):
+    """
+    Reset board to be empty
+    """
+    row = randint(0, 5)
+    column = randint(0, 5)
+    while True:
+        if board[row][column] == "-" or board[row][column] == "x" or board[row][column] == "o":
+            board[row][column] = " "
+        elif board[row][column] == " ":
+            symbols = check_board(board)
+            if symbols > 0:
+                row = randint(0, 5)
+                column = randint(0, 5)
+            else:
+                break
+
+
+def check_board(board):
+    symbols = 0
+    for row in board:
+        for column in row:
+            if column == "-" or column == "x" or column == "o":
+                symbols += 1
+    return symbols
+        
+
+def continue_game():
+    """
+    Check if player wants to end or play again
+    """
+    answer = input("If yes then answer 'y', else 'n' for no. ").lower()
+
+    if answer == "y":
+        print("\nHere we go again!")
+        main()
+    elif answer == "n":
+        print("\nIt was nice playing with you.")
+        print("Have a nice day! :)")
+
+
+def intro_txt():
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
     player_name()
-    gen_ships(PLAYER_BOARD)
-    gen_ships(COMP_BOARD)
     print("\n- Take a guess of what cordinates hides my ships, and I will guess yours!")
     print("- If a ship is hit, it will show an 'x' to mark the spot.")
     print("- If it's a miss, it will instead show a '-' to indicate this.")
     print("- The 'o' on your board are your ships.")
     print("- I can't see them, like you can't see mine.")
     print("- Frist to 5 sunken oponent ships wins!")
+
+
+def main():
+    gen_ships(PLAYER_BOARD)
+    gen_ships(COMP_BOARD)
     while True:
         print("\nThis is your board,")
         playing_board(PLAYER_BOARD)
@@ -191,12 +235,21 @@ def main():
         if player_ship_hit == 5:
             print("\nAnd we have a winner!")
             print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+            reset_board(PLAYER_BOARD)
+            reset_board(GUESS_BOARD)
+            reset_board(COMP_BOARD)
             break
         elif comp_ship_hit == 5:
-            print("\nAnd we have a winner!")
+            print("\nAnd we have a winner!\n")
             print(f"Your score is: {player_ship_hit}\nMy score is: {comp_ship_hit}")
+            reset_board(PLAYER_BOARD)
+            reset_board(GUESS_BOARD)
+            reset_board(COMP_BOARD)
             break
-    
+    print("\nWould you like to play again?")
+    continue_game()
 
+
+intro_txt()
 main()
 
