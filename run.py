@@ -92,11 +92,7 @@ def valid_guess(value1, value2):
             raise ValueError(
                 "\nEach guess can only consist of one character."
             )
-        elif value1 == "":
-            raise ValueError(
-                "\nYou cannot make an empty guess."
-            )
-        elif value2 == "":
+        elif value1 == "" or value2 == "":
             raise ValueError(
                 "\nYou cannot make an empty guess."
             )
@@ -119,7 +115,7 @@ def player_hit(board, board2):
     """
     Check if player hit comp ship
     """
-    while board[row_guess][column_guess] == "-":
+    while board[row_guess][column_guess] == "-" or board[row_guess][column_guess] == "x":
         print("\nYou've already guessed those cordinates. Guess again.")
         player_guess()
     if board[row_guess][column_guess] == "o":
