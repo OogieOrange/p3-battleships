@@ -68,3 +68,14 @@ If the user chooses to end the game, they will exit the game and a message will 
 
 A future vertion of the app will feature a function to keep count of computer and user wins between different games. So the games played between computer and user will be connected instead of being completely seperate games.
 
+<br>
+
+## Wireframe
+
+The wireframe for the project provided a thread to follow through out the project and didn't really change through out the process of building the code. The original wireframe was drawn on paper and later transfered to digital media through [Lucidchart](https://www.lucidchart.com/pages/).
+
+The only element that was added on after the fact was "reset playing boards". As it was an aspect that I had not considered when making the original version.
+
+<img src="readme-images/wireframe-2.jpg" alt="Image showing old wireframe">
+<img src="readme-images/wireframe.png" alt="Image showing new wireframe">
+
