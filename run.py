@@ -222,7 +222,7 @@ def intro_txt():
     and prints rules
     """
     print("\nDo you want to play battleships with me?\n")
-    print("Enter your name if you want to.")
+    print("Enter your name,")
     player_name()
     print("\n- Guess what cordinates hides my ships, and I will guess yours!")
     print("- If a ship is hit, it will show an 'x' to mark the spot.")
