@@ -1,13 +1,18 @@
 from random import randint
 
-PLAYER_BOARD = [[" " for num in range(6)] for num in range(6)]
-GUESS_BOARD = [[" " for num in range(6)] for num in range(6)]
+PLAYER_BOARD = [[" " for num in range(7)] for num in range(6)]
+GUESS_BOARD = [[" " for num in range(7)] for num in range(6)]
 COMP_BOARD = [[" " for num in range(6)] for num in range(6)]
 
 column_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
 
 row_guess = 0
 column_guess = 0
+
+background = "\033[48;5;235m"
+forest_green = "\033[38;5;29m"
+red = "\033[31;5;29m"
+remove_color = "\033[0;0;0m"
 
 def player_name():
     """
@@ -17,7 +22,7 @@ def player_name():
         name = input("- My name is ")
 
         if valid_name(name):
-            print(f"\nWelcome {name.capitalize()}!")
+            print(f"\nWelcome {forest_green}{name.capitalize()}!{remove_color}")
             break
 
 
@@ -41,13 +46,13 @@ def playing_board(board):
     """
     Create the vitual playing board
     """
-    print("  A  B  C  D  E  F")
-    print("++++++++++++++++++++")
+    print("  A  B  C  D  E  F   ")
+    print("++++++++++++++++++++ ")
     row_num = 1
     for row in board:
-        print(row_num, " |".join(row))
+        print(row_num, "| ".join(row))
         row_num += 1
-    print("++++++++++++++++++++")
+    print(f"++++++++++++++++++++ {remove_color}")
 
 
 def gen_ships(board):
@@ -212,6 +217,10 @@ def continue_game():
 
 
 def intro_txt():
+    """
+    Startes game through asking for players name,
+    and prints rules
+    """
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
     player_name()
@@ -224,22 +233,24 @@ def intro_txt():
 
 
 def main():
+    """
+    Runs game
+    """
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
     while True:
-        print("\nThis is your board,")
+        print(f"\n{forest_green}This is your board{remove_color},\n{background}")
         playing_board(PLAYER_BOARD)
-        print("\nMy board is behind this guessing board,")
+        print(f"\n{red}My board is behind this guessing board{remove_color},\n{background}")
         playing_board(GUESS_BOARD)
         print("\nMake a guess!")
-        playing_board(COMP_BOARD)
         player_guess()
         player_hit(COMP_BOARD, GUESS_BOARD)
         player_ship_hit = ships_hit(COMP_BOARD)
-        print(f"Your score is: {player_ship_hit}\n")
+        print(f"{forest_green}Your score is{remove_color}: {player_ship_hit}\n")
         comp_guess(PLAYER_BOARD)
         comp_ship_hit = ships_hit(PLAYER_BOARD)
-        print(f"My score is: {comp_ship_hit}")
+        print(f"{red}My score is{remove_color}: {comp_ship_hit}")
         if player_ship_hit == 5 and comp_ship_hit == 5:
             print("\nIt's a Draw!")
             reset_board(PLAYER_BOARD)
@@ -247,19 +258,19 @@ def main():
             reset_board(COMP_BOARD)
             break
         elif player_ship_hit == 5:
-            print("\nYou won!")
+            print(f"\n{forest_green}You won{remove_color}!")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
             break
         elif comp_ship_hit == 5:
-            print("\nI won!\n")
+            print(f"\n{red}I won{remove_color}!")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
             break
     print("\nWould you like to play again?")
-    print("If yes then answer 'y', else 'n' for no.\n")
+    print(f"If yes then answer 'y', else 'n' for no.\n")
     continue_game()
 
 
