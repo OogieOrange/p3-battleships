@@ -6,13 +6,14 @@ COMP_BOARD = [[" " for num in range(6)] for num in range(6)]
 
 column_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5}
 
-row_guess = 0
-column_guess = 0
+r_guess = 0
+c_guess = 0
 
-background = "\033[48;5;235m"
-forest_green = "\033[38;5;29m"
+blue = "\033[38;5;14m"
+green = "\033[38;5;29m"
 red = "\033[31;5;29m"
-remove_color = "\033[0;0;0m"
+no_color = "\033[0;0;0m"
+
 
 def player_name():
     """
@@ -22,7 +23,7 @@ def player_name():
         name = input("- My name is ")
 
         if valid_name(name):
-            print(f"\nWelcome {forest_green}{name.capitalize()}!{remove_color}")
+            print(f"\nWelcome {green}{name.capitalize()}!{no_color}")
             break
 
 
@@ -31,7 +32,7 @@ def valid_name(value):
     Check that value is only letters
     """
     try:
-        if value.isalpha() != True:
+        if value.isalpha() is not True:
             raise ValueError(
                 "\nName can only consist of letters."
             )
@@ -52,7 +53,7 @@ def playing_board(board):
     for row in board:
         print(row_num, "| ".join(row))
         row_num += 1
-    print(f"++++++++++++++++++++ {remove_color}")
+    print(f"++++++++++++++++++++ {no_color}")
 
 
 def gen_ships(board):
@@ -73,17 +74,17 @@ def player_guess():
     Get guess input from player
     """
     while True:
-        global row_guess, column_guess
+        global r_guess, c_guess
         row = input("\nEnter a guess for row, between 1-6: ")
         column = input("Enter a guess for column, between A-F: ").upper()
 
         if valid_guess(row, column):
             break
 
-    row_guess = int(row) -1
-    column_guess = column_number[column]
+    r_guess = int(row) - 1
+    c_guess = column_number[column]
 
-    return row_guess, column_guess
+    return r_guess, c_guess
 
 
 def valid_guess(value1, value2):
@@ -93,7 +94,7 @@ def valid_guess(value1, value2):
     and that value2 consists of a letter between A and F.
     """
     try:
-        if len(value1) !=1 or len(value2) !=1:
+        if len(value1) != 1 or len(value2) != 1:
             raise ValueError(
                 "\nEach guess can only consist of one character."
             )
@@ -112,7 +113,6 @@ def valid_guess(value1, value2):
     except ValueError as e:
         print(f" {e} Please make another guess.")
         return False
-    
     return True
 
 
@@ -120,16 +120,16 @@ def player_hit(board, board2):
     """
     Check if player hit comp ship
     """
-    while board[row_guess][column_guess] == "-" or board[row_guess][column_guess] == "x":
+    while board[r_guess][c_guess] == "-" or board[r_guess][c_guess] == "x":
         print("\nYou've already guessed those cordinates. Guess again.")
         player_guess()
-    if board[row_guess][column_guess] == "o":
-        board[row_guess][column_guess] = "x"
-        board2[row_guess][column_guess] = "x"
+    if board[r_guess][c_guess] == "o":
+        board[r_guess][c_guess] = "x"
+        board2[r_guess][c_guess] = "x"
         print("\n- Oh no! You hit my ship!")
     else:
-        board[row_guess][column_guess] = "-"
-        board2[row_guess][column_guess] = "-"
+        board[r_guess][c_guess] = "-"
+        board2[r_guess][c_guess] = "-"
         print("\n- Haha! You missed my ships.")
 
 
@@ -139,16 +139,16 @@ def comp_guess(board):
     otherwise show miss on player board
     """
     for guess in range(1):
-        comp_row = randint(0, 5)
-        comp_column = randint(0, 5)
-        while board[comp_row][comp_column] == "-" or board[comp_row][comp_column] == "x":
-            comp_row = randint(0, 5)
-            comp_column = randint(0, 5)
-        if board[comp_row][comp_column] == "o":
-            board[comp_row][comp_column] = "x"
+        row = randint(0, 5)
+        column = randint(0, 5)
+        while board[row][column] == "-" or board[row][column] == "x":
+            row = randint(0, 5)
+            column = randint(0, 5)
+        if board[row][column] == "o":
+            board[row][column] = "x"
             print("- I hit your ship!")
         else:
-            board[comp_row][comp_column] = "-"
+            board[row][column] = "-"
             print("- I missed...")
 
 
@@ -168,16 +168,16 @@ def reset_board(board):
     """
     Reset board to be empty
     """
-    row = randint(0, 5)
-    column = randint(0, 5)
+    r = randint(0, 5)
+    c = randint(0, 5)
     while True:
-        if board[row][column] == "-" or board[row][column] == "x" or board[row][column] == "o":
-            board[row][column] = " "
-        elif board[row][column] == " ":
+        if board[r][c] == "-" or board[r][c] == "x" or board[r][c] == "o":
+            board[r][c] = " "
+        elif board[r][c] == " ":
             symbols = check_board(board)
             if symbols > 0:
-                row = randint(0, 5)
-                column = randint(0, 5)
+                r = randint(0, 5)
+                c = randint(0, 5)
             else:
                 break
 
@@ -192,7 +192,7 @@ def check_board(board):
             if column == "-" or column == "x" or column == "o":
                 symbols += 1
     return symbols
-        
+
 
 def continue_game():
     """
@@ -224,7 +224,7 @@ def intro_txt():
     print("\nDo you want to play battleships with me?\n")
     print("Enter your name if you want to.")
     player_name()
-    print("\n- Take a guess of what cordinates hides my ships, and I will guess yours!")
+    print("\n- Guess what cordinates hides my ships, and I will guess yours!")
     print("- If a ship is hit, it will show an 'x' to mark the spot.")
     print("- If it's a miss, it will instead show a '-' to indicate this.")
     print("- The 'o' on your board are your ships.")
@@ -239,18 +239,19 @@ def main():
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
     while True:
-        print(f"\n{forest_green}This is your board{remove_color},\n{background}")
+        print(f"\n{green}This is your board{no_color},\n{blue}")
         playing_board(PLAYER_BOARD)
-        print(f"\n{red}My board is behind this guessing board{remove_color},\n{background}")
+        print("\nThis is your guessing board.")
+        print(f"{red}My board is behind this board{no_color},\n{blue}")
         playing_board(GUESS_BOARD)
         print("\nMake a guess!")
         player_guess()
         player_hit(COMP_BOARD, GUESS_BOARD)
         player_ship_hit = ships_hit(COMP_BOARD)
-        print(f"{forest_green}Your score is{remove_color}: {player_ship_hit}\n")
+        print(f"{green}Your score is{no_color}: {player_ship_hit}\n")
         comp_guess(PLAYER_BOARD)
         comp_ship_hit = ships_hit(PLAYER_BOARD)
-        print(f"{red}My score is{remove_color}: {comp_ship_hit}")
+        print(f"{red}My score is{no_color}: {comp_ship_hit}")
         if player_ship_hit == 5 and comp_ship_hit == 5:
             print("\nIt's a Draw!")
             reset_board(PLAYER_BOARD)
@@ -258,13 +259,13 @@ def main():
             reset_board(COMP_BOARD)
             break
         elif player_ship_hit == 5:
-            print(f"\n{forest_green}You won{remove_color}!")
+            print(f"\n{green}You won{no_color}!")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
             break
         elif comp_ship_hit == 5:
-            print(f"\n{red}I won{remove_color}!")
+            print(f"\n{red}I won{no_color}!")
             reset_board(PLAYER_BOARD)
             reset_board(GUESS_BOARD)
             reset_board(COMP_BOARD)
@@ -276,4 +277,3 @@ def main():
 
 intro_txt()
 main()
-
