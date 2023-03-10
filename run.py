@@ -229,7 +229,7 @@ def intro_txt():
     print("- If it's a miss, it will instead show a '-' to indicate this.")
     print("- The 'o' on your board are your ships.")
     print("- I can't see them, like you can't see mine.")
-    print("- Frist to 5 sunken oponent ships wins!")
+    print("- First to 5 sunken oponent ships wins!")
 
 
 def main():
