@@ -97,19 +97,19 @@ def valid_guess(value1, value2):
     try:
         if len(value1) != 1 or len(value2) != 1:
             raise ValueError(
-                "\nEach guess can only consist of one character."
+                f"{no_color}\nEach guess can only consist of one character."
             )
         elif value1 == "" or value2 == "":
             raise ValueError(
-                "\nYou cannot make an empty guess."
+                f"{no_color}\nYou cannot make an empty guess."
             )
         elif value1 not in "123456":
             raise ValueError(
-                "\nRow guess can only be a number between 1-6."
+                f"{no_color}\nRow guess can only be a number between 1-6."
             )
         elif value2 not in "ABCDEF":
             raise ValueError(
-                "\nColumn guess can only be a letter between A-F."
+                f"{no_color}\nColumn guess can only be a letter between A-F."
             )
     except ValueError as e:
         print(f" {e} Please make another guess.")

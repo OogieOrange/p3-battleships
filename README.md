@@ -1,31 +1,9 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Battleships
 
-Welcome OogieOrange,
+A version of the classic battleship game built by use of python.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+The purpose of this application is to provide the user with a playable battleship game built with specifically python.
 
-## Reminders
+The application gives the user a compitition against a generated oponent. The landing page will great the user with the question of if they are intrested in playing a game of battleship, and if so to enter their name. If the user chooses to enter their name, they will be welcomed to the game, the users playing board will be generated as will a guessing board. The user will be asked to input coordinates as guesses and the oponent has their guess randomly generated. When one of the two have sunken all of the others ships, the user is informed of the winner and asked if they wnat to restart the game. If yes, the playing boards are cleared and ships generated again. If not, the game loop is exited and the user recives a message to indicate that they have left the game.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
+[LIVE SITE HERE](https://battleships-python-game.herokuapp.com/)
