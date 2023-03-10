@@ -79,3 +79,18 @@ The only element that was added on after the fact was "reset playing boards". As
 <img src="readme-images/wireframe-2.jpg" alt="Image showing old wireframe">
 <img src="readme-images/wireframe.png" alt="Image showing new wireframe">
 
+## Credits
+
+Credits for this project goes to following, for following reasons,
+
+- Knowledge Mavens and his video "[How to Code Battleship in Python - Single Player Game](https://www.youtube.com/watch?v=tF1WRCrd_HQ&t=581s)",
+<br>For supplying me with a generall understanding of python battleship games, the building of my playing boards, the functions "gen_ships" and "ships_hit" in my code and some of my validations for user input.
+
+- [StackAbuse](https://stackabuse.com/how-to-print-colored-text-in-python/),
+<br>For giving instructions on how to add color to my python code.
+
+- Oskar Johansson and Joakim Karlsson, 
+<br>For helping me through hints and support on queries I had through out the project.
+
+- [W3 Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/) and Code Institute Tutors, 
+<br>For answering any query I had along the way.
