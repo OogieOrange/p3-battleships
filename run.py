@@ -12,6 +12,7 @@ c_guess = 0
 blue = "\033[38;5;14m"
 green = "\033[38;5;29m"
 red = "\033[31;5;29m"
+purple = "\033[38;5;96m"
 no_color = "\033[0;0;0m"
 
 
@@ -20,10 +21,10 @@ def player_name():
     Get players name to display over playing board
     """
     while True:
-        name = input("- My name is ")
+        name = input(f"{purple}- My name is ")
 
         if valid_name(name):
-            print(f"\nWelcome {green}{name.capitalize()}!{no_color}")
+            print(f"{no_color}\nWelcome {green}{name.capitalize()}!{no_color}")
             break
 
 
@@ -75,8 +76,8 @@ def player_guess():
     """
     while True:
         global r_guess, c_guess
-        row = input("\nEnter a guess for row, between 1-6: ")
-        column = input("Enter a guess for column, between A-F: ").upper()
+        column = input(f"\n{purple}Enter a column, between A-F: ").upper()
+        row = input("Enter a row, between 1-6: ")
 
         if valid_guess(row, column):
             break
@@ -126,11 +127,11 @@ def player_hit(board, board2):
     if board[r_guess][c_guess] == "o":
         board[r_guess][c_guess] = "x"
         board2[r_guess][c_guess] = "x"
-        print("\n- Oh no! You hit my ship!")
+        print(f"{no_color}\n- Oh no! You hit my ship!")
     else:
         board[r_guess][c_guess] = "-"
         board2[r_guess][c_guess] = "-"
-        print("\n- Haha! You missed my ships.")
+        print(f"{no_color}\n- Haha! You missed my ships.")
 
 
 def comp_guess(board):
@@ -146,7 +147,7 @@ def comp_guess(board):
             column = randint(0, 5)
         if board[row][column] == "o":
             board[row][column] = "x"
-            print("- I hit your ship!")
+            print(f"{no_color}- I hit your ship!")
         else:
             board[row][column] = "-"
             print("- I missed...")
@@ -199,20 +200,20 @@ def continue_game():
     Check if player wants to end or play again
     """
     while True:
-        answer = input("Enter answer: ").lower()
+        answer = input(f"{purple}Enter answer: ").lower()
 
         if answer == "y":
             break
         elif answer == "n":
             break
         else:
-            print("\nThe answer must be either 'y' or 'n'.")
+            print(f"{no_color}\nThe answer must be either 'y' or 'n'.")
 
     if answer == "y":
-        print("\nHere we go again!")
+        print(f"{no_color}\nHere we go again!")
         main()
     elif answer == "n":
-        print("\nIt was nice playing with you.")
+        print(f"{no_color}\nIt was nice playing with you.")
         print("Have a nice day! :)")
 
 
@@ -239,10 +240,10 @@ def main():
     gen_ships(PLAYER_BOARD)
     gen_ships(COMP_BOARD)
     while True:
-        print(f"\n{green}This is your board{no_color},\n{blue}")
+        print(f"\n{green}This is your board{no_color},{blue}")
         playing_board(PLAYER_BOARD)
         print("\nThis is your guessing board.")
-        print(f"{red}My board is behind this board{no_color},\n{blue}")
+        print(f"{red}My board is behind this board{no_color},{blue}")
         playing_board(GUESS_BOARD)
         print("\nMake a guess!")
         player_guess()
@@ -271,7 +272,7 @@ def main():
             reset_board(COMP_BOARD)
             break
     print("\nWould you like to play again?")
-    print(f"If yes then answer 'y', else 'n' for no.\n")
+    print("If yes then answer 'y', else 'n' for no.\n")
     continue_game()
 
 
