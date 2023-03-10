@@ -79,6 +79,28 @@ The only element that was added on after the fact was "reset playing boards". As
 <img src="readme-images/wireframe-2.jpg" alt="Image showing old wireframe">
 <img src="readme-images/wireframe.png" alt="Image showing new wireframe">
 
+<br>
+
+## Technologies used
+
+- Python
+- Git, 
+<br>Was used to commit through Gitpod repository and push code to GitHub.
+
+- [GitHub](https://github.com/),
+<br>Was used to facilitate my project
+
+- [CI Python Linter](https://pep8ci.herokuapp.com/#),
+<br>Was used to lint my python code.
+
+- [Lucidchart](https://www.lucidchart.com/pages/),
+<br>Was used to make a clean wireframe.
+
+- [Heroku](https://id.heroku.com/login),
+<br>Was used to deploy my code.
+
+<br>
+
 ## Credits
 
 Credits for this project goes to following, for following reasons,
