@@ -104,7 +104,7 @@ The following technologies and languages where used during the development of th
 - [Lucidchart](https://www.lucidchart.com/pages/),
 <br><i>Was used to make a clean wireframe.</i>
 
-- [Heroku](https://id.heroku.com/login),
+- [Heroku](https://heroku.com),
 <br><i>Was used to deploy my code.</i>
 
 <br>
@@ -145,6 +145,44 @@ Testings have been conducted continuously during each addition in the developmen
 The [CI Python Linter](https://pep8ci.herokuapp.com/#) was used to lint the project python code. It first came back with minor errors regarding mainly PEP8, that were fixed at some code readability cost. It was later linted again and came back without errors as shown in the image bellow,
 
 <img src="readme-images/linter.png" alt="Image showing linter result">
+
+<br>
+
+## Development
+
+The environment used for the development of this project was GitPod. Through Gitpod, regular commits where made and pushed to Github. This to track development and handle version control.The GitPod environment was created using a template provided by Code Institute by the name "[python-essentials-template](https://github.com/Code-Institute-Org/python-essentials-template)".
+
+<br>
+
+## Deployment
+
+The project was deployed using [Heroku](https://heroku.com) and can be found [here](https://battleships-python-game.herokuapp.com/).
+
+This project was deployed using following steps:
+
+1. Login to Heroku
+
+2. Locate the "New" button on Heroku dashboard, towards the top right corner, and select "Create new app".
+
+3. Choose an available name for the app, provide your region and click "Create App"
+
+4. Navigate to app settings tab and add two buildpack scripts in the following order,
+   - <i>Python
+   - Nodejs</i>
+
+5. Navigate to deployment tab.
+
+6. Under "Deployment method", choose "connect through GitHub" and confirm by clicking the "Connect to GitHub" button.
+
+7. Provide your repository name and click "Search" (If you can't find your repository, check that you've spelled it correctly).
+
+8. Choose and connect the correct repository for the app by clicking the "Connect" button shown beside the repository.
+
+9. Under "Automatic deploys", click the "Enable Automatic Deploys" button.
+
+10. Under "Manual deploy", select the main branch and click the "Deploy Bransh" button (The deployment can take a minute or two).
+
+11. A message will apear informing of a successfully deployment, followed by a link to your live site.
 
 <br>
 
